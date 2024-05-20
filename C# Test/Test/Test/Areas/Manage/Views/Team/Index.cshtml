@@ -1,0 +1,40 @@
+﻿@using Core.Models
+@model List<Team>
+<div class="container">
+    <h1>Teams</h1>
+    <a asp-action="Create" class="btn btn-primary">Create</a>
+</div>
+<div class="container justify-content-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id</th>
+                <th scope="col">FullName</th>
+                <th scope="col">Position</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.FullName</td>
+                    <td>@item.Position</td>
+                    <td>@item.Description</td>
+                    <td>
+                        <img src="~/upload/team/@item.ImgUrl" width="120" height="120"/>
+                    </td>
+                    <td>
+                        <a asp-action="Update" class="btn btn-info" asp-route-id="@item.Id">Update</a>
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <div asp-validation-summary=All class="text-bg-danger"></div>
+</div>
